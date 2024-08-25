@@ -41,11 +41,11 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public ProductDto updateProduct(ProductDto dto) {
+  public ProductDto updateProduct(Long id, ProductDto dto) {
     Product product =
         productRepository
-            .findById(dto.getId())
-            .orElseThrow(() -> new NotFoundException("Product not found with id: " + dto.getId()));
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Product not found with id: " + id));
     product.setName(dto.getName());
     product.setDescription(dto.getDescription());
     product.setPrice(dto.getPrice());
